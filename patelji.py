@@ -13,11 +13,11 @@ from threading import Thread
 
 loop = asyncio.get_event_loop()
 
-TOKEN = ''
+TOKEN = '7405870803:AAGBhVnN26_qGNIFjBhPunBdCtAwYCY4A6E'
 MONGO_URI = 'mongodb+srv://Bishal:Bishal@bishal.dffybpx.mongodb.net/?retryWrites=true&w=majority&appName=Bishal'
-FORWARD_CHANNEL_ID = 
-CHANNEL_ID = 
-error_channel_id = 
+FORWARD_CHANNEL_ID = 7405870803
+CHANNEL_ID = 7213912152
+error_channel_id = 7405870803
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
@@ -96,7 +96,7 @@ DM- @PATELji_47*''', parse_mode='Markdown')
         return
 
     if len(cmd_parts) < 2:
-        bot.send_message(chat_id, "*patelji Invalid command format. Use /approve <user_id> <plan> <days> or /disapprove <user_id>.*", parse_mode='Markdown')
+        bot.send_message(chat_id, "*kill Invalid command format. Use /approve <user_id> <plan> <days> or /disapprove <user_id>.*", parse_mode='Markdown')
         return
 
     action = cmd_parts[0]
@@ -105,9 +105,9 @@ DM- @PATELji_47*''', parse_mode='Markdown')
     days = int(cmd_parts[3]) if len(cmd_parts) >= 4 else 0
 
     if action == '/approve':
-        if plan == 1:  # patelji
+        if plan == 1:  # kill
             if users_collection.count_documents({"plan": 1}) >= 99:
-                bot.send_message(chat_id, "*Approval failed: patelji limit reached (99 users).*", parse_mode='Markdown')
+                bot.send_message(chat_id, "*Approval failed: kill limit reached (99 users).*", parse_mode='Markdown')
                 return
         elif plan == 2:  # pateljii
             if users_collection.count_documents({"plan": 2}) >= 499:
@@ -132,7 +132,7 @@ DM- @PATELji_47*''', parse_mode='Markdown')
     bot.send_message(chat_id, msg_text, parse_mode='Markdown')
     bot.send_message(CHANNEL_ID, msg_text, parse_mode='Markdown')
 
-@bot.message_handler(commands=['patelji'])
+@bot.message_handler(commands=['kill'])
 def attack_command(message):
     user_id = message.from_user.id
     chat_id = message.chat.id
@@ -152,7 +152,7 @@ def process_attack_command(message):
     try:
         args = message.text.split()
         if len(args) != 3:
-            bot.send_message(message.chat.id, "*Bahan ke laude sahi se dal. Please use: patelji target_ip target_port duration*", parse_mode='Markdown')
+            bot.send_message(message.chat.id, "*Bahan ke laude sahi se dal. Please use: kill target_ip target_port duration*", parse_mode='Markdown')
             return
         target_ip, target_port, duration = args[0], int(args[1]), args[2]
 
@@ -177,7 +177,7 @@ def send_welcome(message):
 
     # Create buttons
  #   btn1 = KeyboardButton("Instant Plan 🧡")
-    btn2 = KeyboardButton("patelji")
+    btn2 = KeyboardButton("kill")
     #btn3 = KeyboardButton("Canary Download✔️")
     btn4 = KeyboardButton("My info")
     #btn5 = KeyboardButton("Help❓")
@@ -216,7 +216,7 @@ def handle_message(message):
 
     if message.text == "Instant Plan 🧡":
         bot.reply_to(message, "*Instant Plan selected*", parse_mode='Markdown')
-    elif message.text == "patelji":
+    elif message.text == "kill":
         #bot.reply_to(message, "*Instant++ Plan selected*", parse_mode='Markdown')
         attack_command(message)
     elif message.text == "Canary Download✔️":
